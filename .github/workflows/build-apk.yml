@@ -42,8 +42,19 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install buildozer cython
 
+      - name: Install Android SDK tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y android-sdk
+          export ANDROID_HOME=/usr/lib/android-sdk
+          export ANDROID_SDK_ROOT=/usr/lib/android-sdk
+          yes | sdkmanager --licenses || true
+          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+
       - name: Build APK
         run: |
+          export ANDROID_HOME=/usr/lib/android-sdk
+          export ANDROID_SDK_ROOT=/usr/lib/android-sdk
           buildozer -v android debug
 
       - name: Upload APK
