@@ -32,7 +32,7 @@ fullscreen = 1
 
 android.permissions = INTERNET
 
-android.api = 35
+android.api = 34
 
 android.minapi = 23
 
